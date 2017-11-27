@@ -29,6 +29,6 @@ In the first approach ...
 ## Approach II
 
 In the second approach ...
-
- <img src="./Seq2Seq.jpg" width="820" align="center"/>
-
+<p align="center">
+ <img src="./Seq2Seq.jpg" width="620"/>
+</p>
