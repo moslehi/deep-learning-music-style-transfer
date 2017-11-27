@@ -30,7 +30,7 @@ In the first approach ...
 
 ## Approach II (Seq2Seq- Likith's results)
 
-Machine Translation has had a great success by utilizing Seq2Seq models which use LSTM networks to model general purpose encoder-decoder frameworks. For machine translation, Seq2Seq models take text in one language as input and produce an intermediate vector which is further used to produce text in the target language. We applied the same technique to translate between instruments of a midi file, which would achieve the objective of style transfer as music can vary between instruments in the way they are played.
+Machine Translation has had a great success by utilizing Seq2Seq models which use LSTM networks to model general purpose encoder-decoder frameworks. For machine translation, Seq2Seq models take text in one language as input and produce an intermediate vector which is further used to produce text in the target language. We applied the same technique to translate between instruments of a midi file, which would achieve the objective of style transfer as music can vary between instruments in the way they are played. The following figure depicts the Seq2Seq framework used in this study.  
 
 <p align="center">
  <img src="./Seq2Seq.jpg" width="720"/>
