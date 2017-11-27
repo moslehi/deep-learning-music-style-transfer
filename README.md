@@ -23,8 +23,9 @@ Several studies have been conducted in the area of music style transfer and gene
 ## Approach I
 
 In the first approach ...
-
- <img src="./CycleGAN.jpg" width="820" align="center"/>
+<p align="center">
+ <img src="./CycleGAN.jpg" width="620"/>
+</p>
 
 ## Approach II
 
