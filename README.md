@@ -21,17 +21,19 @@ Several studies have been conducted in the area of music style transfer and gene
 *	[Ulyanov and Lebedev](https://dmitryulyanov.github.io/audio-texture-synthesis-and-style-transfer/) implemented audio style transfer via artistic style transfer algorithm, which uses convolutions with random weights to represent audio features. 
 *	[Finally, Briot et al.](https://arxiv.org/pdf/1709.01620.pdf) published a survey book that discusses various ways of using deep artificial neural networks for musical content generation.
 
-## Approach I
+## Approach I (CycleGAN- Mark's results)
 
 In the first approach ...
 <p align="center">
  <img src="./CycleGAN.jpg" width="720"/>
 </p>
 
-## Approach II
+## Approach II (Seq2Seq- Likith's results)
 
 In the second approach ...
 <p align="center">
  <img src="./Seq2Seq.jpg" width="720"/>
 </p>
+
+## Approach III (CharRNN- Peter's results)
 
