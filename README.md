@@ -4,7 +4,7 @@ The recent state of the art Artificial Intelligence (AI) can recognize images an
 
 The goal of this project is to apply style transfer related deep learning models to transform music from one style to another (e.g. genre to genre). In order to achieve the goal, we have implemented several deep neural network architectures, such as CycleGAN and LSTM, which take the input of audio of one domain and produce the audio of another domain.
 <p align="center">
- <img src="./giphy-guitar.gif" style="margin-bottom: 115px; float: left" width="120"/> <img src="./DeepNeuralNet.jpg"  style="PADDING-LEFT: 50px; PADDING-RIGHT: 50px; float: left" width="525"/> <img src="./giphy-saxophone.gif" width="140" style="PADDING-TOP: 65px; float: left;"/><p style="clear: both;"> 
+<img src="./giphy-guitar.gif" style="margin-bottom: 115px; float: left" width="140"/> <img src="./DeepNeuralNet.jpg"  style="PADDING-LEFT: 50px; PADDING-RIGHT: 50px; float: left" width="455"/> <img src="./giphy-saxophone.gif" width="170" style="PADDING-TOP: 65px; float: left;"/><p style="clear: both;"> 
 </p>
 
 
