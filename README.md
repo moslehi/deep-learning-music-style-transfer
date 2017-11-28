@@ -174,14 +174,25 @@ Input = [samples/Seq2Seq/set_2/input_2.mp3] Prediction = [samples/Seq2Seq/set_2/
 
 ## Approach III (Text LSTM - Peter's results)
 
-For this approach, data from Pokemon video games was used. First, these midi files were converted by hand into a monophonic (only one note plays at a time) representation. Then, using a text encoding tracking note time, pitch, and velocity (including both "Note on" and "Note off" events) was used to convert the midi files into text files. These text files were then fed into an RNN.
+For this approach, data from Pokemon video games was used. First, these midi files were converted by hand into a monophonic (only one note plays at a time) representation. Using a text encoding tracking note time (in ticks since last event), pitch (in midi pitch representation 0-127), and velocity (in midi velocity representation 0-100) we converted the midi files into text files. These text files included both "Note on" and "Note off" events as well as extra information about the midi representation. These text files were then concatenated and fed into the RNN.
 
-The model is based on Char-RNN, which is an implementation of RNN aimed at text prediction. LSTM was chosen for the cell type because music generation requires the RNN to remember not just the last couple notes but also the 
+<p align="center">
+ <img src="./LSTM.png" width="720"/>
+</p>
 
-The original idea was to simply seed this LSTM's output with the input midi. It was thought this could be possible because of the cyclical nature of the songs in this dataset. Unfortunately this did not work as expected, and it was clear that the seed confused the generation and prevented useful output. However, the approach does a reasonable job generating music in the style of Pokemon, and it created some interesting samples shown below.
+It was important that all of these properties be added to the encoding. Initial attempts at running models without the "Note off" events logged created midi files that were of lower quality.
+
+The model is based on Char-RNN, which is an implementation of RNN aimed at text prediction. LSTM was chosen for the cell type because music generation requires the RNN to remember not just the last couple notes but also the notes from earlier in the piece. The size of the hidden layer was chosen to be 128 to most efficiently remember older notes without becoming too repetetive.
+
+The original idea was to simply seed this LSTM's output with the input midi. It was thought this could be possible because of the cyclical nature of the songs in this dataset. Unfortunately this did not work as expected, and after sampling the model for a while, it was clear that the seed confused the generation and prevented useful output. However, the approach does a reasonable job generating music in the style of Pokemon, and it created some interesting samples shown below.
 
 Generated Samples:
+
 [samples/char-rnn/gen1.wav]
+
 [samples/char-rnn/gen2.wav]
+
 [samples/char-rnn/gen3.wav]
+
+Although the final goal was not accomplished, it was very interesting to see how LSTMs can be used to create music! We're grateful for this chance to explore how fascinating models like this can be used to do so many different things.
 
