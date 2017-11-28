@@ -2,7 +2,8 @@
 
 The recent state of the art Artificial Intelligence (AI) can recognize images and knows how to read and listen. To add onto that, it would be really amazing if machines can not only recognize music, but also create a different genre of music by listening to one particular genre of music. As AI agents become more advanced, the capability of AI being able to produce music would also be pivotal.
 
-The goal of this project is to apply style transfer related deep learning models to transform music from one style to another (e.g. genre to genre). In order to achieve the goal, we have implemented several deep neural network architectures, such as CycleGAN and LSTM, which take the input of audio of one domain and produce the audio of another domain.
+The goal of this project is to apply style transfer related deep learning models to transform music from one style to another (e.g. genre to genre). In order to achieve the goal, we have implemented several deep neural network architectures, such as CycleGAN and LSTM, which take the input of audio of one domain and produce the audio of another domain. Using famous deep learning cats, we summarized the objective of this study in the following figure!
+
 <p align="center">
 <img src="./giphy-guitar.gif" style="margin-bottom: 115px; float: left" width="140"/> <img src="./DeepNeuralNet.jpg"  style="PADDING-LEFT: 50px; PADDING-RIGHT: 50px; float: left" width="455"/> <img src="./giphy-saxophone.gif" width="170" style="PADDING-TOP: 65px; float: left;"/><p style="clear: both;"> 
 </p>
@@ -29,7 +30,7 @@ Musical data is everywhere, but finding music that is free to use, easily search
 
 https://github.com/mjdebord/fma-stft
 
-## Approach I (CycleGAN- Mark's results)
+## Approach I - CycleGAN
 
 In the first approach ...
 <p align="center">
