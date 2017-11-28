@@ -53,5 +53,5 @@ This approach might not have produced good results because the dataset was proba
 
 ## Approach III (CharRNN- Peter's results)
 
-In the third approach ...
+For this approach, data from Pokemon video games was used. First, these midi files were converted by hand into monophonic, single-track files. Then, using a text encoding based on the approach used by Tatsuya Hatanaka (edited to include both "Note on" and "Note off" events), I converted the 
 
