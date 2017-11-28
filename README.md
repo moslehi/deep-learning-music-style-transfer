@@ -73,12 +73,12 @@ Another way we can present STFT information without losing the phase information
 
 Real component:
 <p align="center">
- <img src="./Real.png" width="512"/>
+ <img src="./Real.png" width="412"/>
 </p>
 
 Imaginary component:
 <p align="center">
- <img src="./Imag.png" width="512"/>
+ <img src="./Imag.png" width="412"/>
 </p>
 
 ### Vanilla CycleGAN
