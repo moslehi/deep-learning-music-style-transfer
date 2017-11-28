@@ -32,12 +32,12 @@ https://github.com/mjdebord/fma-stft
 
 ## Approach I - CycleGAN
 
-In the first approach ...
+Image content generation and synthesis have been the subjects of recent advances in generative deep-learning models. Techniques such as CycleGAN have shown great ability to transfer the “style” -- qualities such as colors, textures, and shapes --  of one collection of images to another. A bonus for the CycleGAN technique is that the collections of styles do not need to be explicitly labeled, which makes dataset building much easier. We implemented a deep neural network architecture, CycleGAN, that takes spectrogram input of audio of one domain in standard format (e.g. mp3) and produce a spectrogram mapping of the audio of another domain. CycleGANs are a composite of two GANs that are trained simultaneously to minimize the sum of their respective adversarial losses and a cycle consistency loss. Since CycleGAN is capable of transferring the style of one domain of image content to another, it seems like it could be used to transfer the style between musical domains.The following figure depicts our proposed CycleGAN framework for music style tarnsfer.
+
 <p align="center">
  <img src="./CycleGAN.jpg" width="720"/>
 </p>
 
-Image content generation and synthesis have been the subjects of recent advances in generative deep-learning models. Techniques such as CycleGAN have shown great ability to transfer the “style” -- qualities such as colors, textures, and shapes --  of one collection of images to another. A bonus for the CycleGAN technique is that the collections of styles do not need to be explicitly labeled, which makes dataset building much easier. Since CycleGAN is capable of transferring the style of one domain of image content to another, it seems like it could be used to transfer the style between musical domains.
 
 ### Data representation
 The feature-content of an audio signal such as beat, timbre, and texture are not readily available in a visual way with a raw audio signal. In order to get image-like audio information to use in a CycleGAN, we can compute short-time fourier transforms (STFTs) of a signal which will give us 2d information about the frequencies of that make up a signal over time. An STFT is a complex-valued 2d array, where each value gives us information about the amplitude and phase of the constituent frequencies of the signal. STFTs can be computed in a lossless way such that they are perfectly invertible back to the original signal. 
