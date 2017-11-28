@@ -46,6 +46,16 @@ Style transfer achieved through this model via machine translation was not very 
 
 This approach might not have produced good results because the dataset was probably not big enough. After filtering through the dataset to find tracks with two most co-occurring instruments, only 300 tracks were found. Also, in many of these tracks, sequences corresponding to the instruments were not aligned parallely with respect to time i.e., the two instruments did not occur throughout the track and they did not occur concurrently.
 
+A couple of samples produced by the model:
+
+Sample 1:
+Input = [samples/Seq2Seq/set_1/input_1.mp3] Prediction = [samples/Seq2Seq/set_1/pred_1.mp3] Target = [samples/Seq2Seq/set_1/target_1.mp3]
+
+Sample 2:
+Input = [samples/Seq2Seq/set_2/input_2.mp3] Prediction = [samples/Seq2Seq/set_2/pred_2.mp3] Target = [samples/Seq2Seq/set_2/target_2.mp3]
+
+[These Quotes could probably be put towards the end of the whole report]
+
 “I have not failed. I've just found 10,000 ways that won't work.” - Thomas A. Edison
 
 “We have not failed. We've just found 5 ways that won't work.” - Deep Musicians
