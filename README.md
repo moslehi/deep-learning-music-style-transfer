@@ -56,7 +56,9 @@ Another way to represent spectrogram data is as Mel-frequency-cepstrums, or MFCs
 
 One potential problem of using spectrograms or MFCs is that they lose the phase information of a signal. The phase information is important to the timbre of instruments and sounds; two instruments may be able to produce the same ‘C’ note, but they can sound very different due to their timbre. Typically, to invert an amplitude-only spectrogram you need to use an iterative Griffin-Lim algorithm to estimate the correct phase; this can be lossy and sometimes slow. The following examples are the original sound source, and the spectrogram/MFC inversion back to a wave after 42 iterations of a Griffin-Lim algorithm (this takes about a minute in python). 
 
-[Original Sound](https://soundcloud.com/user-94202947/orig-wave?in=user-94202947/sets/samples-for-csci-599)
+Original Sound
+
+(https://soundcloud.com/user-94202947/orig-wave?in=user-94202947/sets/samples-for-csci-599)
 
 [Reconstructed from Spectrogram](https://soundcloud.com/user-94202947/recon-wave?in=user-94202947/sets/samples-for-csci-599)
 
