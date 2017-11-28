@@ -26,9 +26,10 @@ Our main approaches to tackle music style transfer consist of adapting several d
 
 ## Dataset gathering
 
-Musical data is everywhere, but finding music that is free to use, easily searchable, and easy to categorize by feature can be challenging. The Free Music Archive makes it simpler by offering millions of songs free of difficult copyrights as well as an API that allows music to be filtered by genre/artist/instrument/BPM and many other features. To help facilitate dataset building, we created this github page that shows how to use FMA tools and data subsets to create training datasets:
+Musical data is everywhere, but finding music that is free to use, easily searchable, and easy to categorize by feature can be challenging. The Free Music Archive makes it simpler by offering millions of songs free of difficult copyrights as well as an API that allows music to be filtered by genre/artist/instrument/BPM and many other features. To help facilitate dataset building, we created this github page that shows how to use FMA tools and data subsets to create training datasets: https://github.com/mjdebord/fma-stft
 
-https://github.com/mjdebord/fma-stft
+The Lakh MIDI dataset used in Seq2Seq model was compiled by Colin Raffel and is distributed with a [CC-BY 4.0 license](https://creativecommons.org/licenses/by/4.0/).  The dataset can be found at http://colinraffel.com/projects/lmd/ 
+
 
 ## Approach I - CycleGAN
 
