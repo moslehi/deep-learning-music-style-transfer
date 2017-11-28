@@ -61,7 +61,18 @@ Input = [samples/Seq2Seq/set_2/input_2.mp3] Prediction = [samples/Seq2Seq/set_2/
 “We have not failed. We've just found 5 ways that won't work.” - Deep Musicians
 
 
-## Approach III (CharRNN- Peter's results)
+## Approach III (Text LSTM - Peter's results)
 
-For this approach, data from Pokemon video games was used. First, these midi files were converted by hand into monophonic, single-track files. Then, using a text encoding based on the approach used by Tatsuya Hatanaka (edited to include both "Note on" and "Note off" events), I converted the 
+For this approach, data from Pokemon video games was used. First, these midi files were converted by hand into a monophonic (only one note plays at a time) representation. Then, using a text encoding tracking note time, pitch, and velocity (including both "Note on" and "Note off" events) was used to convert the midi files into text files. These text files were then fed into an RNN.
+
+The model is based on Char-RNN, which is an implementation of RNN aimed at text prediction. LSTM was chosen for the cell type because music generation needs the more versatile memory it holds.
+
+The original idea was to simply seed this LSTM's output with the input midi. Unfortunately this did not work as expected, and it was clear that the 
+
+STILL WORKING ON THIS
+
+Generated Samples:
+[samples/char-rnn/gen1.wav]
+[samples/char-rnn/gen2.wav]
+[samples/char-rnn/gen3.wav]
 
