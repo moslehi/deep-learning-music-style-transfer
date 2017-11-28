@@ -232,7 +232,7 @@ It was important that all of these properties be added to the encoding. Initial 
 
 The model is based on Char-RNN, which is an implementation of RNN aimed at text prediction. LSTM was chosen for the cell type because music generation requires the RNN to remember not just the last couple notes but also the notes from earlier in the piece. The size of the hidden layer was chosen to be 128 to most efficiently remember older notes without becoming too repetetive.
 
-The original idea was to simply seed this LSTM's output with the input midi. It was thought this could be possible because of the cyclical nature of the songs in this dataset. Unfortunately this did not work as expected, and after sampling the model for a while, it was clear that the seed confused the generation and prevented useful output. However, the approach does a reasonable job generating music in the style of Pokemon, and it created some interesting samples shown below.
+The original idea was to simply seed this LSTM's output with the input midi. It was thought this could be possible because of the cyclical nature of the songs in this dataset. Unfortunately this did not work as expected, and after sampling the model for a while, it was clear that the seed confused the generation and prevented useful output. However, the approach does a reasonable job generating music in the style of Pokemon, and after some quick post-processing to clean up the few syntax errors it made, it created some interesting samples shown below.
 
 Generated Samples:
 
