@@ -23,7 +23,7 @@ Several studies have been conducted in the area of music style transfer and gene
 
 ## Dataset gathering
 
-Musical data is everywhere, but finding music that is free to use, easily searchable, and easy to categorize by feature can be challenging. The Free Music Archive makes it simpler by offering millions of songs free of difficult copyrights as well as an api that allows music to be filtered by genre/artist/instrument/bpm and many other features. To help facilitate dataset building, we created this github page that shows how to use FMA tools and data subsets to create training datasets:
+Musical data is everywhere, but finding music that is free to use, easily searchable, and easy to categorize by feature can be challenging. The Free Music Archive makes it simpler by offering millions of songs free of difficult copyrights as well as an API that allows music to be filtered by genre/artist/instrument/BPM and many other features. To help facilitate dataset building, we created this github page that shows how to use FMA tools and data subsets to create training datasets:
 
 https://github.com/mjdebord/fma-stft
 
@@ -34,27 +34,29 @@ In the first approach ...
  <img src="./CycleGAN.jpg" width="720"/>
 </p>
 
-Image content generation and synthesis have been the subjects of recent advances in generative deep-learning models. Techniques such as CycleGAN have shown great ability to transfer the “style” -- qualities such as colors, textures, and shapes --  of one collection of images to another. A bonus for the CycleGAN technique is that the collections of styles do not need to be explicitly labeled, which makes dataset building much easier. Since CycleGAN is capable of transferring the style of one domain of image content to another, it seems like it might be able to transfer the style between musical domains.
+Image content generation and synthesis have been the subjects of recent advances in generative deep-learning models. Techniques such as CycleGAN have shown great ability to transfer the “style” -- qualities such as colors, textures, and shapes --  of one collection of images to another. A bonus for the CycleGAN technique is that the collections of styles do not need to be explicitly labeled, which makes dataset building much easier. Since CycleGAN is capable of transferring the style of one domain of image content to another, it seems like it could be used to transfer the style between musical domains.
 
 ### Data representation
-The feature-content of an audio signal such as beet, timbre, and texture are not readily available in a visual way with a raw audio signal. In order to get image-like audio information to use in a CycleGAN, we can compute short-time fourier transforms (STFTs) of a signal which will give us 2d information about the frequencies of that make up a signal over time. An STFT is a complex-valued 2d array, where each value gives us information about the amplitude and phase of the constituent frequencies of the signal. STFTs can be computed in a lossless way such that they are perfectly invertible back to the original signal. 
+The feature-content of an audio signal such as beat, timbre, and texture are not readily available in a visual way with a raw audio signal. In order to get image-like audio information to use in a CycleGAN, we can compute short-time fourier transforms (STFTs) of a signal which will give us 2d information about the frequencies of that make up a signal over time. An STFT is a complex-valued 2d array, where each value gives us information about the amplitude and phase of the constituent frequencies of the signal. STFTs can be computed in a lossless way such that they are perfectly invertible back to the original signal. 
 
-A common visualization of signals are “spectrograms” which display the amplitudes of the frequencies over time. Spectrograms are computed by squaring the STFT matrix and gives us simple 1-channel ‘image-like’ data that can be used in CycleGAN or other image-based techniques. Some examples (after an additional log transform):
+A common visualization of audio signals are spectrograms which display the amplitudes of constituent frequencies over time. Spectrograms are computed by squaring the STFT matrix and gives us simple 1-channel ‘image-like’ data that can be used in CycleGAN or other image-based techniques. An example (after an additional log transform):
 
 <p align="center">
  <img src="./Spec.png" width="1024"/>
 </p>
 
-Another way to represent spectrogram data is as Mel-frequency-cepstrums or MFCs. MFCs are popular in speech recognition and musical classification tasks. From wikipedia “mel-frequency cepstrum (MFC) is a representation of the short-time power spectrum of a sound, based on a linear cosine transform of a log power spectrum on a nonlinear mel scale of frequency.” More or less, MFCs transform the spectrogram of a signal to a ‘Mel-scale’ in an attempt to portray the signal in a way that better describes how we hear it rather than in a completely physical way. For audio style transfer, this seems like it could be a useful representation because the ‘important’ sound styles will be better represented.
+Another way to represent spectrogram data is as Mel-frequency-cepstrums, or MFCs. MFCs are popular in speech recognition and musical classification tasks. Per Wikipedia, “[MFCs are] a representation of the short-time power spectrum of a sound, based on a linear cosine transform of a log power spectrum on a nonlinear mel scale of frequency.” Basically, MFCs transform the spectrogram of a signal to a ‘Mel-scale’ in an attempt to portray the power spectrum in a way that better describes how we hear the intensity of different frequencies. This seems like it could be a useful representation for audio style transfer because the most important sound textures will be better represented.
 
 <p align="center">
  <img src="./MelSpec.png" width="1024"/>
 </p>
 
-One potential problem of using spectrograms or MFCs is that they lose the phase information of a signal. The phase information is important to the ‘timbre’ of instruments and sounds; two instruments may be able to produce the same ‘C’ note, but they can sound very different due to their timbre. Typically, to invert an amplitude-only spectrogram you need to use an iterative Griffin-Lim algorithm to estimate the correct phase; this can be lossy and sometime slow. The following examples are the original sound source, and the spectrogram/MFC inversion back to a wave after 42 iterations of a Griffin-Lim algorithm (this takes about a minute in python). 
+One potential problem of using spectrograms or MFCs is that they lose the phase information of a signal. The phase information is important to the timbre of instruments and sounds; two instruments may be able to produce the same ‘C’ note, but they can sound very different due to their timbre. Typically, to invert an amplitude-only spectrogram you need to use an iterative Griffin-Lim algorithm to estimate the correct phase; this can be lossy and sometimes slow. The following examples are the original sound source, and the spectrogram/MFC inversion back to a wave after 42 iterations of a Griffin-Lim algorithm (this takes about a minute in python). 
 
 [Original Sound](https://soundcloud.com/user-94202947/orig-wave?in=user-94202947/sets/samples-for-csci-599)
+
 [Reconstructed from Spectrogram](https://soundcloud.com/user-94202947/recon-wave?in=user-94202947/sets/samples-for-csci-599)
+
 [Reconstructed from MFC](https://soundcloud.com/user-94202947/mel-wave?in=user-94202947/sets/samples-for-csci-599)
 
 
@@ -77,12 +79,18 @@ Imaginary component:
 For our first attempt at using CycleGAN we used an essentially "vanilla" architecture as described in the original CycleGAN paper. The only difference being that the input and output of the generators are now single-channel spectrograms as described above. The first attempt was to try to transfer the stylings of Beethoven and Daftpunk. The network was trained on 25 songs from each artist that were split into 400 5-second spectrograms. After many attempts at slightly modifying hyperparameters this was one of the 'better' results:
 
 [Beethoven](https://soundcloud.com/user-94202947/beet0?in=user-94202947/sets/samples-for-csci-599)
+
 [Beethoven to Daftpunk](https://soundcloud.com/user-94202947/beet2punk?in=user-94202947/sets/samples-for-csci-599)
+
 [Beethoven Reconstructed](https://soundcloud.com/user-94202947/beet2punk2beet?in=user-94202947/sets/samples-for-csci-599)
 
+
 [Daftpunk](https://soundcloud.com/user-94202947/punk0?in=user-94202947/sets/samples-for-csci-599)
+
 [Daftpunk to Beethoven](https://soundcloud.com/user-94202947/punk2beet?in=user-94202947/sets/samples-for-csci-599)
+
 [Daftpunk Reconstructed](https://soundcloud.com/user-94202947/punk2beet2punk?in=user-94202947/sets/samples-for-csci-599)
+
 
 The result isn't pleasing, so after many tweeks to the network hyperparameters we also tried to use the MFC representation. The MFC representation produced results that were lower quality than the posted one. Given that MFC data and spectrogram data are visually quite similar, and that MFCs are a lossy format, we anticipated this result. 
 
@@ -102,7 +110,7 @@ In hopes of having CycleGAN produce something better sounding, we also attempted
 
 While the results are not amazing, it does appear that the CycleGAN is capable of learning from the 2-channel STFT data even though the relationship between the complex information and the actual audio is more involved. 
 
-#### Conclusion / Problems with Vanilla CycleGAN
+#### Problems / Conclusion with Vanilla CycleGAN
 
 It appears that the vanilla CycleGAN has difficulties learning the key features that make up high-quality audio in STFT data. During training, the cycle consistency loss gradually declined and the discriminators quickly learned to distinguish between real and generated samples, but the generator losses were very sporadic and generally did not improve much. 
 
@@ -114,11 +122,11 @@ Although we didn't have time to try it, it may be possible to get better results
 
 In an attempt to relax the potential problem with translational varience mentioned in the last section, we also attempted to use a 'shallow' generator design that makes use of many (1024) tall  convolutions (127x1) with only a few layers (2), rather than many small square convolutions in a deep network. The intuition behind this is that when viewing a regular image, you ‘see’ patterns in all RGB channels at once in a given (x,y) window, whereas in audio, you ‘hear’ all of the patterns in all frequency bins at once in a given time window; this makes spectrograms more like 1xT images with F channels rather than FxT single channel images. 
 
-The results from this method sounded worse (on average) than with the preivous CycleGAN methods, indicating that convolutional design is not quite as imporant as we had originally thought it might be. (*We only had time to try this on one dataset with one set of parameters, it may still have promise*)
+The results from this method sounded worse (on average) than with the preivous CycleGAN methods, potentially indicating that kernel design is not quite as imporant as we had originally thought it might be. (*We only had time to try this on one dataset with one set of parameters, it may still have promise*)
 
 ## Approach II - Neural Style on Spectrograms
 
-Another technique we attempted is to try a spectrogram extension of the “Neural Algorithm for Artistic Style” presented in this paper https://arxiv.org/pdf/1508.06576.pdf. We utilized a network similar to the one presented by “Dmitry Ulyanov” who has also extended this work for use on audio https://dmitryulyanov.github.io/audio-texture-synthesis-and-style-transfer/ 
+Another technique we attempted was to try a spectrogram extension of the “Neural Algorithm for Artistic Style” presented in this paper https://arxiv.org/pdf/1508.06576.pdf. We utilized a network similar to the one presented by “Dmitry Ulyanov” who has also extended this work for use on audio https://dmitryulyanov.github.io/audio-texture-synthesis-and-style-transfer/ 
 
 Rather than represent the spectrogram as an FxT single channel image, (number of frequency bins by number of time samples), it is represented as a 1xT image with F channels. The intuition behind doing this is exactly the same as the intuition behind the 'Shallow CycleGAN' method mentioned previously -- the translational invarience of the shapes in the spectrogram only exists on the temporal axis.
 
