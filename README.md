@@ -220,7 +220,7 @@ Input = [samples/Seq2Seq/set_2/input_2.mp3] Prediction = [samples/Seq2Seq/set_2/
 “We have not failed. We've just found 5 ways that won't work.” - Deep Musicians
 
 
-## Approach III (Text LSTM - Peter's results)
+## Approach III Text-LSTM
 
 For this approach, data from Pokemon video games was used. First, these midi files were converted by hand into a monophonic (only one note plays at a time) representation. Using a text encoding tracking note time (in ticks since last event), pitch (in midi pitch representation 0-127), and velocity (in midi velocity representation 0-100) we converted the midi files into text files. These text files included both "Note on" and "Note off" events as well as extra information about the midi representation. These text files were then concatenated and fed into the RNN.
 
